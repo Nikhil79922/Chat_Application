@@ -1,0 +1,25 @@
+services:
+  krakend:
+    image: krakend:2.10
+    container_name: krakend-gateway
+    restart: always
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - ./krakend.json:/etc/krakend/krakend.json:ro
+    env_file:
+      - .env
+    environment:
+      - FC_ENABLE=1
+      - KRAKEND_LOG_LEVEL=DEBUG
+    command:
+      - run
+      - -d
+      - -c
+      - /etc/krakend/krakend.json
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge

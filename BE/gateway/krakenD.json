@@ -1,0 +1,38 @@
+{
+    "version": 3,
+    "name": "Chat App Gateway",
+    "port": 8080,
+    "endpoints": [
+        {
+            "endpoint": "/api/v1/login",
+            "backend": [
+                {
+                    "url_pattern": "/api/v1/login",
+                    "host": [
+                        "http://host.docker.internal:8000"
+                    ]
+                }
+            ]
+        },
+      {
+  "endpoint": "/api/v1/chat/all",
+  "method": "GET",
+  "backend": [
+    {
+      "host": ["http://host.docker.internal:5002"],
+      "url_pattern": "/api/v1/chat/all"
+    }
+  ],
+  "extra_config": {
+    "github.com/devopsfaith/krakend-jose/validator": {
+      "alg": "HS256",
+      "secret": "nikkssyDevDCMarvelfan",
+      "header": "Authorization",
+      "disable_jwk_security": true,
+      "propagate_claims": ["_id", "name", "email"]
+    }
+  }
+}
+
+    ]
+}
