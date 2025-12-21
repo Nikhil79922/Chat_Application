@@ -158,7 +158,6 @@ export const sendMessage = TryCatch(async (req, res) => {
 });
 export const getMessagesByChat = TryCatch(async (req, res) => {
     const userId = req.user?._id;
-    console.log("working");
     const { chatId } = req.params;
     if (!userId) {
         res.status(401).json({

@@ -185,7 +185,6 @@ res.status(201).json({
 
 export const getMessagesByChat =TryCatch(async (req: AuthenticatedRequest, res) => {
 const userId = req.user?._id;
-console.log("working")
 const {chatId} = req.params;
 
 if (!userId) {
