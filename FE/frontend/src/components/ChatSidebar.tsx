@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { User } from '../context/AppContext';
 import { CornerDownRight, CornerUpLeft, LogOut, MessageCircle, Plus, Search, UserCircle, X } from 'lucide-react';
 import Link from 'next/link';
+import { spawn } from 'child_process';
 
 interface ChatSidebarProps {
     sideBarOpen: boolean;
@@ -16,10 +17,11 @@ interface ChatSidebarProps {
     setselectedUser: (userId: string | null) => void
     handleLogout: () => void;
     createChat: (user:User)=> void;
+    onlineUsers: string[];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUsers, users, loggedInUser, chats, selectedUser, setselectedUser, handleLogout , createChat }: ChatSidebarProps) => {
+const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUsers, users, loggedInUser, chats, selectedUser, setselectedUser, handleLogout , createChat,onlineUsers }: ChatSidebarProps) => {
     const [searchQuery, setsearchQuery] = useState("")
     return (
 
@@ -63,16 +65,23 @@ const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUser
                                             <div className='flex items-center gap-3'>
                                                 <div className='relative'>
                                                     <UserCircle className='w-6 h-6 text-gray-300' />
+                                                    {
+                                                    onlineUsers.includes(u._id) &&(
+                                                        <span className='absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-2 border-gray-900 '/>
+                                                    )
+                                                }
                                                 </div>
-                                                {/* Show the Online Symbol  */}
+                                                
                                                 <div className='flex-1 min-w-0'>
                                                     <span className='font-medium text-white'>{u.name}</span>
                                                     <div className=' text-xs text-gray-400 mt-0.5'>
                                                         {/* To Show Online Offline text block */}
+                                                        {
+                                                    onlineUsers.includes(u._id)?"Online":"Offline"
+                                                }
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </button>
                                     ))
                                 }
@@ -94,8 +103,13 @@ const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUser
                                                 <div className='w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center'>
                                                     <UserCircle className='w-7 h-7 text-gray-300' />
                                                     {/* Online User Work  */}
-                                                </div>
 
+                                                </div>
+     {
+        onlineUsers.includes(chat.user._id) && (
+            <span className='absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-green-500 border-2 border-gray-900 '/>
+        )
+     }
                                             </div>
                                             <div className='flex-1 min-w-0'>
                                                 <div className='flex items-center justify-between mb-1'>

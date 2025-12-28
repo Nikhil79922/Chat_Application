@@ -13,6 +13,7 @@ import ChatHeader from '@/src/components/ChatHeader'
 import ChatMessages from '@/src/components/ChatMessages'
 import MessageInput from '@/src/components/MessageInput'
 import { Response } from 'express';
+import { SocketData } from '@/src/context/SocketContext'
 
 
 export interface Message {
@@ -31,6 +32,9 @@ export interface Message {
 }
 const page = () => {
   const { loading, isAuth, logoutUser, chats, user: loggedInUser, users, fetchChats, setChats } = useAppData()
+
+  const {onlineUsers}=SocketData()
+  console.log(onlineUsers)
   const router = useRouter()
   const [selectedUser, setselectedUser] = useState<string | null>(null)
   const [message, setmessage] = useState("")
@@ -142,9 +146,9 @@ if(!selectedUser) return
   if (loading) return <Loading />
   return (
     <div className='min-h-screen flex bg-gray-900 text-white relative overflow-hidden'>
-      <ChatSidebar sideBarOpen={sideBarOpen} setsideBarOpen={setsideBarOpen} showAllUsers={showAllUser} setshowAllUsers={setshowAllUser} users={users} loggedInUser={loggedInUser} chats={chats} selectedUser={selectedUser} setselectedUser={setselectedUser} handleLogout={handleLogout} createChat={createChat} />
+      <ChatSidebar sideBarOpen={sideBarOpen} setsideBarOpen={setsideBarOpen} showAllUsers={showAllUser} setshowAllUsers={setshowAllUser} users={users} loggedInUser={loggedInUser} chats={chats} selectedUser={selectedUser} setselectedUser={setselectedUser} handleLogout={handleLogout} createChat={createChat} onlineUsers={onlineUsers}/>
       <div className='flex-1 flex flex-col justify-between p-4 backdrop-blur-xl bg-white/5 border-[1px] border-white/10 '>
-      <ChatHeader user={user} setsideBarOpen={setsideBarOpen} isTyping={isTyping}/>
+      <ChatHeader user={user} setsideBarOpen={setsideBarOpen} isTyping={isTyping} onlineUsers={onlineUsers}/>
       <ChatMessages selectedUser={selectedUser} loggedInUser={loggedInUser} messages={messages} />
       <MessageInput selectedUser={selectedUser} message={message} setmessage={handleTyping} handleMessageSend={handleMessageSend} />
       </div>
