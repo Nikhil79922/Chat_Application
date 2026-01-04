@@ -41,7 +41,7 @@ const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUser
                             <h2 className='text-xl font-bold '>{showAllUsers ? "New Chat" : "Messages"}</h2>
                         </div>
 
-                        <button onClick={() => setshowAllUsers((prev) => !prev)} className={`p-2.5 rounded-lg transition-colors ${showAllUsers ? "bg-red-600 hover:bg-red-700 text-white" : "bg-green-600 hover:bg-green-700 text-white"} `}>
+                        <button onClick={() => setshowAllUsers((prev) => !prev)} className={`p-2.5 rounded-lg transition-colors ${showAllUsers ? "bg-red-600 hover:bg-red-700 text-white" : "bg-green-600 cursor-pointer hover:bg-green-700 text-white"} `}>
                             {showAllUsers ? <X className='w-4 h-4' /> : <Plus className='w-4 h-4' />}
                         </button>
                     </div>
@@ -87,7 +87,7 @@ const ChatSidebar = ({ sideBarOpen, setsideBarOpen, showAllUsers, setshowAllUser
                                 }
                             </div>
 
-                        </div> : (chats && chats.length > 0 ? <div className='space-y-2 overflow-y-auto h-full pb-4'>
+                        </div> : (chats && chats.length > 0 ? <div className='space-y-2 overflow-y-auto  h-full pb-4'>
                             {
                                 chats.map((chat) => {
                                     const latestMessage = chat.chat.latestMessage;
