@@ -2,7 +2,7 @@
 "use client"
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import Cookies from "@/node_modules/@types/js-cookie";
+import Cookies from "js-cookie";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast'
 

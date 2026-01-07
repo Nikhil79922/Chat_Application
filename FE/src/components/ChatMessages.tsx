@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import { Message } from '../app/chat/page';
 import { User } from '../context/AppContext';
-import { Messages } from '../../../../BE/chat/src/model/Message';
 import moment from 'moment';
 import { Check, CheckCheck } from 'lucide-react';
 
