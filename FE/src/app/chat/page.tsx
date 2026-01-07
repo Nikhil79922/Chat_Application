@@ -7,7 +7,7 @@ import { chat_service, useAppData, User } from '@/src/context/AppContext'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import Cookies from 'js-cookie';
+import Cookies from '@/node_modules/@types/js-cookie';
 import axios from 'axios'
 import ChatHeader from '@/src/components/ChatHeader'
 import ChatMessages from '@/src/components/ChatMessages'

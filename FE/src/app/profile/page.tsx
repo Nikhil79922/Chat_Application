@@ -3,7 +3,7 @@
 import { useAppData, user_service } from '@/src/context/AppContext'
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
-import Cookies from 'js-cookie';
+import Cookies from '@/node_modules/@types/js-cookie';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Loading from '@/src/components/Loading';

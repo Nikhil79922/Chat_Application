@@ -6,7 +6,7 @@ import { Lock, ArrowRight, Loader2, ChevronLeft, } from 'lucide-react';
 import { redirect, useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react'
-import Cookies from 'js-cookie';
+import Cookies from '@/node_modules/@types/js-cookie';
 import { useAppData, user_service } from '@/src/context/AppContext';
 import Loading from './Loading';
 import toast from 'react-hot-toast';
