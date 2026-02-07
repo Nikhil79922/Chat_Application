@@ -35,6 +35,11 @@ if(userId){
     socket.join(userId)
 }
 
+socket.on("joinChat",(chatId)=>{
+    socket.join(chatId);
+    console.log(`User ${userId} joined chat room ${chatId}`);
+})
+
 socket.on("typing",(data)=>{
     console.log(`User ${data.userId} is typing in Chat ${data.chatId}`);
     socket.to(data.chatId).emit("userTyping",{
@@ -49,11 +54,6 @@ socket.on("stopTyping",(data)=>{
         chatId:data.chatId,
         userId:data.userId
     })
-})
-
-socket.on("joinChat",(chatId)=>{
-    socket.join(chatId);
-    console.log(`User ${userId} joined chat room ${chatId}`);
 })
 
 socket.on("leaveChat",(chatId)=>{
